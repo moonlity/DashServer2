@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper" >
+<select id="login" resultType="UserDTO" parameterType = "UserDTO">
+	SELECT USER_ID as userId, 
+	PASSWORD as password, 
+	USER_NAME as userName, 
+	EMAIL as email, 
+	USER_LEVEL_CD as userLevelCd,  
+	PHONE_NUM as phoneNum
+	FROM tb_user
+	WHERE USER_ID=#{userId} 
+		and STATUS = 'T' 
+		and PASSWORD = #{password}
+</select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_industrial_003_on</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="000-copy-3" transform="translate(0.000000, -2.000000)">
+            <g id="icon_industrial_003_on" transform="translate(0.000000, 2.000000)">
+                <rect id="Rectangle-Copy-2" fill="#1F8EFA" x="0" y="0" width="32" height="32" rx="4"></rect>
+                <path d="M13.3,15.775 C12.679,15.775 12.175,16.279 12.175,16.9 C12.175,17.521 12.679,18.025 13.3,18.025 C13.921,18.025 14.425,17.521 14.425,16.9 C14.425,16.279 13.921,15.775 13.3,15.775 Z M18.7,15.775 C18.079,15.775 17.575,16.279 17.575,16.9 C17.575,17.521 18.079,18.025 18.7,18.025 C19.321,18.025 19.825,17.521 19.825,16.9 C19.825,16.279 19.321,15.775 18.7,15.775 Z M16,7 C11.032,7 7,11.032 7,16 C7,20.968 11.032,25 16,25 C20.968,25 25,20.968 25,16 C25,11.032 20.968,7 16,7 Z M16,23.2 C12.031,23.2 8.8,19.969 8.8,16 C8.8,15.739 8.818,15.478 8.845,15.226 C10.969,14.281 12.652,12.544 13.534,10.393 C15.163,12.697 17.845,14.2 20.878,14.2 C21.58,14.2 22.255,14.119 22.903,13.966 C23.092,14.605 23.2,15.289 23.2,16 C23.2,19.969 19.969,23.2 16,23.2 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

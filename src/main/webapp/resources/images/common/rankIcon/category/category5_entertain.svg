@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_industrial_005</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="000-copy-5" transform="translate(-38.000000, -2.000000)">
+            <g id="icon_industrial_005" transform="translate(38.000000, 2.000000)">
+                <rect id="Rectangle-Copy-3" fill="#F3F7F8" x="0" y="0" width="32" height="32" rx="4"></rect>
+                <path d="M24.1818182,9.6 L17.2818182,9.6 L20.2727273,6.639 L19.6363636,6 L16,9.6 L12.3636364,6 L11.7181818,6.639 L14.7181818,9.6 L7.81818182,9.6 C6.81818182,9.6 6,10.401 6,11.4 L6,22.2 C6,23.19 6.81818182,24 7.81818182,24 L24.1818182,24 C25.1818182,24 26,23.19 26,22.2 L26,11.4 C26,10.401 25.1818182,9.6 24.1818182,9.6 Z M24.1818182,22.2 L7.81818182,22.2 L7.81818182,11.4 L24.1818182,11.4 L24.1818182,22.2 Z M13.2727273,13.2 L13.2727273,20.4 L19.6363636,16.8 L13.2727273,13.2 Z" id="Shape-Copy-4" fill="#B2B5B6" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

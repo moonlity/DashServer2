@@ -1,0 +1,16 @@
+
+<svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_user1-copy" transform="translate(-8.000000, -5.000000)">
+            <rect id="Rectangle-2" x="0" y="0" width="28" height="28"></rect>
+            <g id="Group-3" transform="translate(9.000000, 6.000000)" stroke="#71798F" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.5,10.5758514 L10.5,5.374613 C10.5,3.22018952 8.48528137,1.47368421 6,1.47368421 C3.51471863,1.47368421 1.5,3.22018952 1.5,5.374613 L1.5,10.5758514 L0,12.5263158 L12,12.5263158 L10.5,10.5758514 Z" id="Combined-Shape"></path>
+                <path d="M5.625,1.47368421 L5.625,0" id="Line"></path>
+                <path d="M4.5,12.5263158 C4.5,13.3402091 5.17157288,14 6,14 L6,14 C6.82842712,14 7.5,13.3402091 7.5,12.5263158" id="Oval-2"></path>
+            </g>
+        </g>
+    </g>
+</svg>

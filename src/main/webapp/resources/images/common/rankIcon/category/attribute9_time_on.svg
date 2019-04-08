@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_industrial_009_on</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="000-copy-9" transform="translate(0.000000, -2.000000)">
+            <g id="icon_industrial_009_on" transform="translate(0.000000, 2.000000)">
+                <rect id="Rectangle-Copy-2" fill="#1F8EFA" x="0" y="0" width="32" height="32" rx="4"></rect>
+                <g id="Group" transform="translate(7.000000, 7.000000)" fill-rule="nonzero" fill="#FFFFFF">
+                    <path d="M8.991,0 C4.023,0 0,4.032 0,9 C0,13.968 4.023,18 8.991,18 C13.968,18 18,13.968 18,9 C18,4.032 13.968,0 8.991,0 Z M9,16.2 C5.022,16.2 1.8,12.978 1.8,9 C1.8,5.022 5.022,1.8 9,1.8 C12.978,1.8 16.2,5.022 16.2,9 C16.2,12.978 12.978,16.2 9,16.2 Z" id="Shape"></path>
+                    <polygon id="Shape" points="9.45 4.5 8.1 4.5 8.1 9.9 12.825 12.735 13.5 11.628 9.45 9.225"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
