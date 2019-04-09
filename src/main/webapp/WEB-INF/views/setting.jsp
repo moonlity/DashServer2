@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,11 +46,33 @@
 <!--// 메뉴 ui 관련  -->
 <script src="/resources/js/common/common.js"></script>
 <!-- 위젯에서 공통으로 사용되는 스크립트 -->
-<script src="/resources/js/common/widgetCommon.js"></script>
 
 <script type="text/javascript" src="/resources/js/common/gridStack.js"></script>
-<script type="text/javascript" src="/resources/js/user/dashboard.js"></script>
 
+
+<script type="text/javascript" src="/resources/js/dash/com/common.js"></script>
+<script type="text/javascript" src="/resources/js/dash/com/api.js"></script>
+<script type="text/javascript" src="/resources/js/dash/com/constants.js"></script>
+<!-- <script type="text/javascript" src="/resources/js/dash/model/header_bar.js"></script>
+<script type="text/javascript" src="/resources/js/dash/view/header_bar.js"></script> -->
+<script type="text/javascript" src="/resources/js/dash/model/dashboard.js"></script>
+<script type="text/javascript" src="/resources/js/dash/view/dashboard.js"></script>
+
+<script type="text/javascript" src="/resources/js/dash/model/add_menu.js"></script>
+<script type="text/javascript" src="/resources/js/dash/view/add_menu.js"></script>
+
+<script type="text/javascript" src="/resources/js/dash/model/widget.js"></script>
+<script type="text/javascript" src="/resources/js/dash/view/widget.js"></script>
+<script type="text/javascript" src="/resources/js/dash/view/comview.js"></script>
+
+<script type="text/javascript" src="/resources/js/dash/controller/setting_controller.js"></script>
+<script type="text/javascript" src="/resources/js/dash/app/dash_main.js"></script>
+<script type="text/javascript" src="/resources/js/dash/app/widgetInfo.js"></script>
+<script>
+	window.onload = function() {   
+		var main = new SETTING.app.dashMain(); 
+    }
+</script>
 </head>
 
 <body id="wide"><!-- [D] 대시보드, 위젯페이지만 #wide 추가 -->

@@ -61,6 +61,8 @@ public class HomeController {
 	// 원하는 대시보드를 꾸미는 화면
 	@RequestMapping(value = "/setting", method = RequestMethod.GET)
 	public String setting(Model model) {
+		model.addAttribute("userId" , "swonjiny");
+		model.addAttribute("userName" , "송원진");
 		return "setting";
 	}
 }
