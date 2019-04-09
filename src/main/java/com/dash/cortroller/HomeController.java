@@ -53,5 +53,14 @@ public class HomeController {
 	public String login(Model model) {
 		return "login";
 	}
-	
+	// 로그인검사
+	@RequestMapping(value = "/logingo", method = RequestMethod.GET)
+	public String logingo(Model model) {
+		return "setting";
+	}
+	// 원하는 대시보드를 꾸미는 화면
+	@RequestMapping(value = "/setting", method = RequestMethod.GET)
+	public String setting(Model model) {
+		return "setting";
+	}
 }

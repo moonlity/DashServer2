@@ -99,14 +99,14 @@
 			</ul>
 
 			<ul class="sns">
-				<li><a href="http://www.tapacross.co.kr" class="home" target="_blank" title="새창">Home</a></li>
-				<li><a href="https://blog.naver.com/tapacross" class="tstroy" target="_blank" title="새창">blog</a></li>
-				<li><a href="https://www.facebook.com/tapacross" class="facebook" target="_blank" title="새창">faceBook</a></li>
-				<li><a href="https://twitter.com/tapacross" class="twitter" target="_blank" title="새창">twitter</a></li>
-				<li><a href="https://www.instagram.com/tapacross" class="instagram" target="_blank" title="새창">instagram</a></li>
+				<li><a href="#" class="home" target="_blank" title="새창">Home</a></li>
+				<li><a href="#" class="tstroy" target="_blank" title="새창">blog</a></li>
+				<li><a href="#" class="facebook" target="_blank" title="새창">faceBook</a></li>
+				<li><a href="#" class="twitter" target="_blank" title="새창">twitter</a></li>
+				<li><a href="#" class="instagram" target="_blank" title="새창">instagram</a></li>
 			</ul>
 
-			<p class="copy">Copyright 2018.<a href="http://www.tapacross.co.kr" target="_blank">SWONJINY</a>Corp. All rights reserved.</p>
+			<p class="copy">Copyright 2019.<a href="#" target="_blank">SWONJINY</a>Corp. All rights reserved.</p>
 		</div>
 		
 	</div>
