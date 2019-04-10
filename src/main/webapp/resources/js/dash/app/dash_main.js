@@ -24,17 +24,18 @@ SETTING.app.dashMain = (function() {
 
     // 초기화
     dashMain.prototype.setup = function() {
-        var svcMenuId = document.querySelectorAll("[data-code]")[0].dataset.code;
+    	var userId = document.querySelectorAll(".userInfo span")[1].innerText ; // 최좌측상단 메뉴
+
         this.mainController.setDashBoardModel(this.dashModel);
         this.mainController.setDashBoardView(this.dashView);
 
         this.dashView.setModel(this.dashModel);
         this.dashView.setController(this.mainController);
         this.dashModel.setView(this.dashView);
-
-        this.mainController.getDashBoardLimit();
-        this.mainController.setSvcMenuId(svcMenuId);
-        this.mainController.getDbDashBoard(svcMenuId);
+        this.dashModel.setUserId(userId); // 대시보드 정보를 가져올 유저아이디세팅
+        
+        this.mainController.getDashBoardLimit(); // 사용자별로 제한된 대시보드수량획득
+        this.mainController.getDbDashBoard(); // 사용자별로 이전에 저장한 대시보드 정보를 획득
 
         this.mainController.setAddMenuModel(this.addMenuModel);
         this.mainController.setAddMenuView(this.addMenuView);

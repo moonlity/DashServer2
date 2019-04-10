@@ -24,12 +24,9 @@ public class SettingDAOImpl implements SettingDAO {
 	private static String namespace = "mapper.SettingMapper";
 	
 	@Override
-	public List<DashMenuDTO> selectUserDashList(String userId , String svcMenuId) throws Exception {
-		logger.info("[사용자별 메뉴별 대시보드를 조회합니다 ]" + " - userId : " + userId + " - svcMenuId : " + svcMenuId);
-		Map<String, Object> param = new HashMap<>();
-		param.put("userId", userId);
-		param.put("svcMenuId", svcMenuId);
-		return session.selectList(namespace + ".userDashList", param);
+	public List<DashMenuDTO> selectUserDashList(String userId) throws Exception {
+		logger.info("[사용자별 메뉴별 대시보드를 조회합니다 ]" + " - userId : " + userId );
+		return session.selectList(namespace + ".userDashList", userId);
 	}
 
 	@Override
@@ -65,7 +62,6 @@ public class SettingDAOImpl implements SettingDAO {
 
 	@Override
 	public int selectDashLimitCount(String userId) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".selectDashLimitCount", userId);
 	}
 

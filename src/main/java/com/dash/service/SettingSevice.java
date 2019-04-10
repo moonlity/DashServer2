@@ -9,12 +9,11 @@ public interface SettingSevice {
 	 * 사용자의 대메뉴별 대시보드 목록을 가져온다
 	 * @author 송원진
 	 * @param userId  String 사용자 아아디
-	 * @param svcMunuId  String 대메뉴값
 	 * @return 사용하는 대시보드 목록 List<DashMenuDTO>
 	 * @exception Exception
 	 * 
 	 * */
-	public List<DashMenuDTO> selectUserDashList(String userId , String svcMunuId) throws Exception;
+	public List<DashMenuDTO> selectUserDashList(String userId) throws Exception;
 	/**
 	 * 대시보드를 저장한다.
 	 * @author 송원진

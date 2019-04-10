@@ -10,18 +10,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM TB_USER
 		WHERE USER_ID = #{val}
 	</select>
-
-	<select id="userDashList" resultType="DashMenuDTO" parameterType="HashMap">
+	
+	<!-- 사용자별 대시보드 목록 -->
+	<select id="userDashList" resultType="DashMenuDTO" >
 		SELECT 
 			DASHBOARD_ID AS dashId,
 			DASHBOARD_NM AS dashName,
-			SORT_ORDER AS sort
+			SORT_ORDER AS sortOrder
 		FROM TB_DASHBOARD
-		WHERE USER_ID = #{userId}
-			AND USE_YN = 'Y'
-			<if test="svcMenuId != null and svcMenuId != ''">
-			AND SVC_MENU_ID = #{svcMenuId}
-			</if>
+		WHERE USER_ID = #{val}
 		ORDER BY SORT_ORDER ASC
 	</select>
 	

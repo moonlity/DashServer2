@@ -33,10 +33,10 @@ SETTING.model.addmenu = (function() {
     }
 
     // 파라미터 지정
-    addmenu.prototype.widgetSearch = function(menuId, search, current) {
+    addmenu.prototype.widgetSearch = function(search, current) {
         this.pageInfo.current = current;
         var curOffset = (current - 1) * this.listSize;
-        this.param = { "offset": curOffset, "size": this.listSize, "menuId": menuId, "search": search };
+        this.param = { "offset": curOffset, "size": this.listSize, "search": search };
         this.getWidgetList();
     }
 
@@ -50,7 +50,7 @@ SETTING.model.addmenu = (function() {
 
     // 위젯 목록 정보 갱신
     addmenu.prototype.getWidgetList = function() {
-        var url = "/serest/widgetAble";
+        var url = "/crest/widgetAble";
         this.api.setMethod("POST");
         this.api.setDataType("JSON");
         this.api.setPayload(this.param);

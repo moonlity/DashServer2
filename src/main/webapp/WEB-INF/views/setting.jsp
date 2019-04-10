@@ -131,22 +131,6 @@
 
 		<div class="variableArea">
 			<div class="gnbArea">
-				<div class="selectbox">
-					<dl class="dropdown cover-ar">
-						<dt>
-							<a href="#" class="drop-bt"><span data-code="C000"><em class="C000"></em>대시보드<i class="xi-angle-down-min"></i></span></a>
-						</dt>
-						<dd class="drop-ct">
-							<ul class="dropdown2">
-									<li><a href="#" data-code="C000" ><em class="C000"></em>대시보드<i class="xi-angle-down-min"></i></a></li>
-<!-- 									<li><a href="#"  data-code="G000" ><em class="G000"></em>대시보드1<i class="xi-angle-down-min"></i></a></li>
-									<li><a href="#"  data-code="D000" ><em class="D000"></em>대시보드2<i class="xi-angle-down-min"></i></a></li>
-									<li><a href="#"  data-code="P000" ><em class="P000"></em>대시보드3<i class="xi-angle-down-min"></i></a></li> -->
-							</ul>
-						</dd>
-					</dl>
-				</div>
-
 				<ul class="menu">
 					<li class="dash1-ar">
 						<a href="#" 	class="active"  data-id=1>1번대시보드</a>

@@ -79,7 +79,7 @@ SETTING.view.dashboard = (function() {
     // 대시보드 메뉴 그리기
     dashboard.prototype.drawDashBoard = function() {
 
-        var html = this.dashHtml(this.model.getDrawBoardList(), this.model.getSvcMenuid(), this.model.getSelectedId());
+        var html = this.dashHtml(this.model.getDrawBoardList(), this.model.getSelectedId());
         this.dashEl.innerHTML = html;
         this.btnDashEdit.firstElementChild.value = "";
         this.dashBoardEventBind();
@@ -180,23 +180,20 @@ SETTING.view.dashboard = (function() {
 
     // 대시보드 html 생성
     // data 대시보드 정보 svcMenuId 대메뉴정보 selected  선택된 정보
-    dashboard.prototype.dashHtml = function(data, svcMenuId, selected) {
+    dashboard.prototype.dashHtml = function(data, selected) {
         return data.reduce(
             function(html, item, index) {
-                if (item.svcMenuId === svcMenuId) {
-                    html += '<li>';
-                    if (item.dashId == selected) html += '<a href="#" class = "active" data-id=' + item.dashId + '>' + item.dashName + '</a>';
-                    else html += '<a href="#" data-id=' + item.dashId + '>' + item.dashName + '</a>';
-                    html += '<a href="#" class="xi-ellipsis-h drop-bt"><span>설정</span></a>';
-                    html += '<ul class="boardMenu_setting drop-ct">';
-                    html += '<li><a href="#" >이름변경</a></li>';
-                    html += '<li><a href="#" >삭제</a></li>';
-                    html += '</ul>';
-                    html += '<input type="text" style="display:none" class = "edit" data-id=' + item.dashId + ' value= ' + item.dashName + '> ';
-                    html += '<a href="#" style="display:none" class="addSuc">완료</a>'
-                    html += '</li>';
-                }
-
+            	html += '<li>';
+            	if (item.dashId == selected) html += '<a href="#" class = "active" data-id=' + item.dashId + '>' + item.dashName + '</a>';
+            	else html += '<a href="#" data-id=' + item.dashId + '>' + item.dashName + '</a>';
+            	html += '<a href="#" class="xi-ellipsis-h drop-bt"><span>설정</span></a>';
+            	html += '<ul class="boardMenu_setting drop-ct">';
+            	html += '<li><a href="#" >이름변경</a></li>';
+            	html += '<li><a href="#" >삭제</a></li>';
+            	html += '</ul>';
+            	html += '<input type="text" style="display:none" class = "edit" data-id=' + item.dashId + ' value= ' + item.dashName + '> ';
+            	html += '<a href="#" style="display:none" class="addSuc">완료</a>'
+            	html += '</li>';
                 return html;
             }, '') + ""
     }

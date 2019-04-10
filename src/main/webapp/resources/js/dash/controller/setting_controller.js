@@ -50,20 +50,6 @@ SETTING.controller.settingController = (function() {
         // };
     }
 
-    // 메인화면으로 이동한다.
-    settingController.prototype.rootMent = function() {
-        var svcMenuId = this.getSvcMenuId();
-        if (svcMenuId == 'D000') {
-            location.href = "/compare/main";
-        } else if (svcMenuId == 'C000') {
-            location.href = "/cover/main";
-        } else if (svcMenuId == 'G000') {
-            location.href = "/simple/main";
-        } else if (svcMenuId == 'P000') {
-            location.href = "/prop/main";
-        }
-    }
-
     // 위젯 수정시 데잍 수정및 수정 데이터인지 판별
     settingController.prototype.updateWidgetChange = function(dashId) {
         var $nodes = $('.grid-stack').data('gridstack').grid.nodes;
@@ -163,15 +149,6 @@ SETTING.controller.settingController = (function() {
         this.dashBoardView.getDrawBoardList();
     }
 
-    // 대메뉴 정보 세팅
-    settingController.prototype.setSvcMenuId = function(svcMenuId) {
-        this.dashBoardModel.setSvcMenuid(svcMenuId);
-    }
-
-    // 대메뉴 정보 세팅
-    settingController.prototype.getSvcMenuId = function() {
-        return this.dashBoardModel.getSvcMenuid();
-    }
 
     // 사용가능 위젯 정보를 가져온다.
     settingController.prototype.getAbleWidgetInfo = function() {
@@ -180,8 +157,7 @@ SETTING.controller.settingController = (function() {
 
     // 사용가능한 위젯 검색
     settingController.prototype.searchAbleWidget = function(search, current) {
-        var tempMeudId = this.dashBoardModel.getSvcMenuid();
-        this.addMenuModel.widgetSearch(tempMeudId, search, current);
+        this.addMenuModel.widgetSearch(search, current);
     }
 
     // 위젯 그리기 메뉴 현재 페이지 정보
@@ -199,15 +175,12 @@ SETTING.controller.settingController = (function() {
         // 데이터 저장및 중복방지 기능추가
         var flag = this.widgetModel.insertConfirm(widgetInfo);
         if (flag) {
-            this.comview.oneRowModal("동일한 위젯을 추가하실 수 없습니다.<br/> 확인하세요",
-                "dsSettingType");
-
+            this.comview.oneRowModal("동일한 위젯을 추가하실 수 없습니다.<br/> 확인하세요", "dsSettingType");
         } else {
             // 화면에 그리기
             widgetInfo = this.widgetView.drawWidget(widgetInfo);
             this.widgetModel.setInsertWidget(widgetInfo);
         }
-
     }
 
     // 위젯 속성 버튼을 선택한 경우
@@ -218,7 +191,6 @@ SETTING.controller.settingController = (function() {
 
     // 위젯 속성 버튼을 선택한 경우
     settingController.prototype.clickWidgetDeleteBtn = function(widgetInfo) {
-
         this.widgetModel.deleteWidget(widgetInfo);
     }
 
@@ -242,54 +214,11 @@ SETTING.controller.settingController = (function() {
         this.widgetModel.getWidgetListCall(dashId);
     }
 
-    // 대시보드 설정을 변경한경우
-    settingController.prototype.insertWidgetProp = function(propArr) {
-        var dashId = document.querySelector('.header .gnbArea .menu > li > a.active').dataset.id;
-
-        this.widgetModel.insertWidgetProp(dashId, propArr[0].optionId.substr(0, 3), propArr);
-    }
-
-    settingController.prototype.saveValidate = function(dashList) {
-        // 필수 위젯 검사
-        var necessaryWidget = this.Constants.getNecessaryWidget();
-        var widgetList = this.widgetModel.getWidgetDrawList();
-        var flag = true;
-        for (var a = 0; a < necessaryWidget.length; a++) {
-            var nsvcMenuId = necessaryWidget[a].svcMenuId;
-            var nwidgetId = necessaryWidget[a].widgetId;
-            var ndashList = dashList.filter(function(item) {
-                var nsvcMenuId = necessaryWidget[a].svcMenuId;
-                return item.svcMenuId == nsvcMenuId;
-            });
-
-            for (var b = 0; b < ndashList.length; b++) {
-                var nwidgetList = widgetList.filter(function(item) {
-                    return item.dashId == ndashList[b].dashId;
-                });
-                var ncount = 0;
-                for (var c = 0; c < nwidgetList.length; c++) {
-                    for (var d = 0; d < nwidgetId.length; d++) {
-                        if (nwidgetList[c].widgetId == nwidgetId[d]) {
-                            ncount++;
-                        }
-                    }
-                }
-                if (ncount == 0) {
-                    this.comview.oneRowModal("대시보드 '" + ndashList[b].dashName + "' 필수 위젯이 없습니다. <br/><br/> 필수 위젯 - 미디어별 주요 키워드 , 산업별 브랜드 인덱스 ,속성별 주요 키워드 ", "dsSettingType");
-                    flag = false;
-                }
-            }
-        }
-        return flag;
-    }
-
-    // 저장버튼이벤트 위임
+    // 저장버튼이벤트 위임 // 대시보드 & 위젯에 변동사항 있으면 바로바로 crud 되도록 변경할 예정임
     settingController.prototype.save = function() {
-
         // 신규 저장 대시보드 검사
         var dashList = this.dashBoardModel.getCreateBoardList();
 
-        if (!this.saveValidate(dashList)) return;
         // 대시보드에서 위젯을 삭제하는 경우 대응
         // 위젯을 삭제하는 경우 해당 대시보드를 선택하여 대시보드및 위젯 정보가 있는것으로 여긴다
         dashList = this.dashBoardModel.getDrawBoardList();
@@ -304,13 +233,12 @@ SETTING.controller.settingController = (function() {
 
         dashList = dashList.filter(function(item) {
             for (var i = 0; i < delDashArr.length; i++) {
-                console.log((item.dashId == delDashArr[i].dashId && item.svcMenuId == "C000"));
                 if (item.dashId == delDashArr[i] && item.svcMenuId == "C000") return true;
             }
         });
 
         if (!this.saveValidate(dashList)) return;
-        var count = 0;
+        var count = 0; // 위젯이 메인화면에 그려질대 확인하는걸로 변경한다.
         // 대시보드 저장 호출
         // this.dashBoardModel.save();
         var that = this;
@@ -354,7 +282,6 @@ SETTING.controller.settingController = (function() {
                 that.dashBoardModel.infoReset();
                 that.widgetModel.infoReset();
                 that.comview.oneRowModal("저장하였습니다.", "dsSettingType");
-                // 그냥 저장하고 나서 강제 리프래쉬를 할것인가????????????
             })
             .fail(function(jqXHR, textStatus) {
                 console.error(jqXHR, textStatus);
@@ -364,14 +291,8 @@ SETTING.controller.settingController = (function() {
                 console.log("저장 실행");
             })
     }
-
-    // 필수 위젯 확인
-    settingController.prototype.necsssWidget = function() {
-        this.widgetModel = this.widgetModel.getWidgetDrawList()
-
-    }
     settingController.prototype.toString = function() {
-        return "settingController";
+        return "SETTING.controller.settingController";
     };
 
     return settingController;
