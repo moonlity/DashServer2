@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dash.dto.DashInsertDTO;
 import com.dash.dto.DashMenuDTO;
+import com.dash.dto.DashWidgetDTO;
 import com.dash.dto.WidgetInfoDTO;
 @Repository
 public class SettingDAOImpl implements SettingDAO {
@@ -30,32 +31,29 @@ public class SettingDAOImpl implements SettingDAO {
 	}
 
 	@Override
-	public int insertDash(String userId, String svcMenuId, String dashName) throws Exception {
-		logger.info("[사용자별 메뉴별 대시보드를 저장한다. ]" + " - userId : " + userId + " - svcMunuId : " + svcMenuId + " - dashName : " + dashName);
+	public int insertDash(String userId,  String dashName) throws Exception {
+		logger.info("[사용자별 메뉴별 대시보드를 저장한다. ]" + " - userId : " + userId + " - dashName : " + dashName);
 		Map<String, Object> param = new HashMap<>();
 		param.put("userId", userId);
-		param.put("svcMenuId", svcMenuId);
 		param.put("dashName", dashName);
 		return session.insert(namespace + ".insertDashBoard", param);
 	}
 
 	@Override
-	public int updateDash(String userId, String svcMenuId, String dashName , String dashId) throws Exception {
-		logger.info("[사용자별 메뉴별 대시보드를 수정한다. ]" + " - userId : " + userId + " - svcMunuId : " + svcMenuId + " - dashName : " + dashName + " - dashId " + dashId);
+	public int updateDash(String userId, String dashName , String dashId) throws Exception {
+		logger.info("[사용자별 메뉴별 대시보드를 수정한다. ]" + " - userId : " + userId + " - dashName : " + dashName + " - dashId " + dashId);
 		Map<String, Object> param = new HashMap<>();
 		param.put("userId", userId);
-		param.put("svcMenuId", svcMenuId);
 		param.put("dashName", dashName);
 		param.put("dashId", dashId);
 		return session.update(namespace + ".updateDashBoard", param);
 	}
 
 	@Override
-	public int deleteDash(String userId, String svcMenuId, String dashId) throws Exception {
-		logger.info("[사용자별 메뉴별 대시보드를 삭제한다. ]" + " - userId : " + userId + " - svcMenuId : " + svcMenuId + " - dashId : " + dashId);
+	public int deleteDash(String userId, String dashId) throws Exception {
+		logger.info("[사용자별 메뉴별 대시보드를 삭제한다. ]" + " - userId : " + userId + " - dashId : " + dashId);
 		Map<String, Object> param = new HashMap<>();
 		param.put("userId", userId);
-		param.put("svcMenuId", svcMenuId);
 		param.put("dashId", dashId);
 		return session.delete(namespace + ".deleteDashBoard", param);
 	}
@@ -79,12 +77,7 @@ public class SettingDAOImpl implements SettingDAO {
 		return session.delete(namespace + ".deleteWidget", paramMap);
 	}
 
-	@Override
-	public int deleteDashQuery(String[] dashId) throws Exception {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("dashList", dashId);
-		return session.delete(namespace + ".deleteDashQuery", paramMap);
-	}
+
 
 	@Override
 	public int deleteDashBoard(String[] dashId) throws Exception {
@@ -132,16 +125,22 @@ public class SettingDAOImpl implements SettingDAO {
 		return session.insert(namespace+".insertDashBoardReturn", dto);
 	}
 
+
 	@Override
-	public int insertDashWidgetProp(String dashId, int widgetId, int optionid, int optionpropid, String userId)
+	public List<DashWidgetDTO> getWidgetList(String search,  int size, int offset)
 			throws Exception {
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("dashId", dashId);
-		paramMap.put("widgetId", widgetId);
-		paramMap.put("optionid", optionid);
-		paramMap.put("optionpropid", optionpropid);
-		paramMap.put("userId", userId);
-		return session.insert(namespace+".insertDashWidgetProp", paramMap);
+		HashMap<String, Object> parmaMap = new HashMap<>();
+		parmaMap.put("search", search);
+		parmaMap.put("size", size);
+		parmaMap.put("offset", offset);
+		return session.selectList(namespace +".getWedgetList" , parmaMap);
+	}
+
+	@Override
+	public int getWidgetCount(String search) throws Exception {
+		HashMap<String, Object> parmaMap = new HashMap<>();
+		parmaMap.put("search", search);
+		return session.selectOne(namespace +".getWidgetCount" , parmaMap);
 	}
 
 }

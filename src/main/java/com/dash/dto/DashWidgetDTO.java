@@ -16,6 +16,8 @@ public class DashWidgetDTO {
 	private int curWidth; // 입력된 넓이
 	private int curHeight; // 입력된 높이
 	private String widgetImg;// 선택된 위젯 이미지
+	private int total;// 전체갯수
+	
 	public String getDashId() {
 		return dashId;
 	}
@@ -106,6 +108,12 @@ public class DashWidgetDTO {
 	public void setWidgetImg(String widgetImg) {
 		this.widgetImg = widgetImg;
 	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -139,6 +147,10 @@ public class DashWidgetDTO {
 		builder.append(curHeight);
 		builder.append(", widgetImg=");
 		builder.append(widgetImg);
+		builder.append(", total=");
+		builder.append(total);
+		builder.append("]");
 		return builder.toString();
 	}
+	
 }

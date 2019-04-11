@@ -199,4 +199,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{userId}
 		  )
 	</insert>
+	
+	 <!-- 이용가능 위젯가져오기  -->
+  <select id="getWedgetList"  resultType="DashWidgetDTO" parameterType="HashMap">
+  	<bind name="pattern" value="'%' + search + '%'" />
+
+	SELECT 
+		WIDGET_ID AS widgetId, 
+		WIDGET_NM AS widgetNm, 
+		DEFAULT_WIDTH AS defaultWidth, 
+		DEFAULT_HEIGHT AS defaultHeight, 
+		MIN_WIDTH AS minWidth, 
+		MIN_HEIGHT AS minHeight, 
+		MAX_WIDTH AS maxWidth, 
+		MAX_HEIGHT AS maxHeight, 
+		WIDGET_IMG  AS widgetImg
+	FROM tb_widget
+	WHERE use_yn = 'Y' 
+	AND WIDGET_NM LIKE #{pattern}
+	ORDER BY SORT_ORDER
+	LIMIT #{offset},  #{size}
+  </select>
+  
+  	 <!-- 이용가능 위젯가져오기 전체 갯수  -->
+  <select id="getWidgetCount"  resultType="int" parameterType="HashMap">
+  	<bind name="pattern" value="'%' + search + '%'" />
+	SELECT 
+		count(*)
+	FROM tb_widget
+	WHERE use_yn = 'Y' 
+	AND WIDGET_NM LIKE #{pattern}
+	ORDER BY SORT_ORDER
+  </select>
 </mapper>

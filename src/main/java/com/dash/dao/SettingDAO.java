@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dash.dto.DashInsertDTO;
 import com.dash.dto.DashMenuDTO;
+import com.dash.dto.DashWidgetDTO;
 import com.dash.dto.WidgetInfoDTO;
 
 public interface SettingDAO {
@@ -20,37 +21,34 @@ public interface SettingDAO {
 	 * 사용자의 대메뉴별 대시보드 목록을 가져온다
 	 * @author 송원진
 	 * @param userId  String 사용자 아아디
-	 * @param svcMunuId  String 대메뉴값
 	 * @param dashName  String 대시보드이름
 	 * @return void
 	 * @exception Exception
 	 * 
 	 * */
-	public int insertDash(String userId , String svcMunuId , String dashName) throws Exception;
+	public int insertDash(String userId , String dashName) throws Exception;
 	
 	/**
 	 * 사용자의 대메뉴별 대시보드 이름을 수정한다.
 	 * @author 송원진
 	 * @param userId  String 사용자 아아디
-	 * @param svcMunuId  String 대메뉴값
 	 * @param dashName  String 대시보드이름
 	 * @param dashId  String 대시보드 아이디
 	 * @return void
 	 * @exception Exception
 	 * 
 	 * */
-	public int updateDash(String userId , String svcMunuId , String dashName,String dashId) throws Exception;
+	public int updateDash(String userId , String dashName,String dashId) throws Exception;
 	
 	/**
 	 * 사용자의 대메뉴별 대시보드 삭제한다
 	 * @author 송원진
 	 * @param userId  String 사용자 아아디
-	 * @param svcMunuId  String 대메뉴값
 	 * @param dashId  String 대시보드 아이디
 	 * @return void
 	 * @exception Exception
 	 * */
-	public int deleteDash(String userId , String svcMenuId , String dashId) throws Exception;
+	public int deleteDash(String userId , String dashId) throws Exception;
 	/**
 	 * 사용자의 대메뉴별 대시보드 생성가능 갯수를 가져온다
 	 * @author 송원진
@@ -65,8 +63,7 @@ public interface SettingDAO {
 	
 	// 대시보드 위젯 정보 삭제
 	public int deleteWidget(String[] dashId) throws Exception;
-	// 대시보드 쿼리정보 삭제
-	public int deleteDashQuery(String[] dashId) throws Exception;
+
 	// 대시보드 쿼리정보 삭제
 	public int deleteDashBoard(String[] dashId) throws Exception;
 	// 대시보드 이름 수정
@@ -81,6 +78,22 @@ public interface SettingDAO {
 	public int insertDashBoardWidget(int dashId , int widgetId ,int curWidth, int curHeight , int curx , int cury , String userId  ) throws Exception;
 	// 대시보드 신규 입력
 	public int insertDashReturn(DashInsertDTO dto) throws Exception;
-	// 대시보드 속성정보 입력
-	public int insertDashWidgetProp(String dashId , int widgetId , int optionid , int optionpropid , String userId) throws Exception;
+
+	/**
+	 * @param String search 위젯검색명
+	 * @param int size 리턴받을 갯수
+	 * @param int offset 이숫자 다음것부터 가져온다.
+	 * @return List<DashWidgetDTO>  
+	 * @throws Exception 
+	 * 대시보드 메뉴에서 사용가능한 위젯목록정보를 가져온다.
+	 */	
+	public List<DashWidgetDTO> getWidgetList(String search, int size, int offset) throws Exception;
+	
+	/**
+	 * @param String search 위젯검색명
+	 * @return int
+	 * @throws Exception 
+	 * 대시보드 메뉴에서 사용가능한 위젯목록정보를 가져온다.
+	 */	
+	public int getWidgetCount(String search) throws Exception;
 }

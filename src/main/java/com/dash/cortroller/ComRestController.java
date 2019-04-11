@@ -1,5 +1,6 @@
 package com.dash.cortroller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -88,17 +89,18 @@ public class ComRestController {
 	 * */
 
 	@RequestMapping(value = "/widgetAble")
-	public ResponseEntity<List<DashWidgetDTO>> ableWidgetList(
+	public ResponseEntity<HashMap<String, Object>> ableWidgetList(
 			@RequestParam(value="search" , defaultValue="") String search, 
 			@RequestParam(value="size" , defaultValue="6") int size,
 			@RequestParam(value="offset" , defaultValue="1") int offset
 			){
 		try {
-			List<DashWidgetDTO> wList = userService.getWidgetList(search.trim(),menuId , size,offset,userDTO.getDomainId());
-			return new ResponseEntity<>(wList, HttpStatus.OK);
+			HashMap<String, Object> map = settingSevice.getWidgetList(search.trim(), size,offset);
+			return new ResponseEntity<>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
 		}
+	}
 }

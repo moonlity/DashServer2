@@ -1,8 +1,10 @@
 package com.dash.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.dash.dto.DashMenuDTO;
+import com.dash.dto.DashWidgetDTO;
 
 public interface SettingSevice {
 	/**
@@ -57,5 +59,15 @@ public interface SettingSevice {
 	 * @exception Exception
 	 * */
 	public int selectDashLimitCount(String userId) throws Exception;
+	
+	/**
+	 * @param String search 위젯검색명
+	 * @param int size 리턴받을 갯수
+	 * @param int offset 이숫자 다음것부터 가져온다.
+	 * @return List<WidgetDTO>  
+	 * @throws Exception 
+	 * 대시보드 메뉴에서 사용가능한 위젯목록정보를 가져온다.
+	 */	
+	public HashMap<String, Object> getWidgetList(String search, int size, int offset) throws Exception;
 
 }

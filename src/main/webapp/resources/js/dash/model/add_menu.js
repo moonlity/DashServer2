@@ -58,13 +58,12 @@ SETTING.model.addmenu = (function() {
         var that = this;
         this.api.callReq()
             .done(function(data) {
-                that.widgetList = data;
-
-                that.getPageList(data[0].total); // 페이지 정보 갱신 및 그리기
+                that.widgetList = data.list;
+                that.getPageList(data.count); // 페이지 정보 갱신 및 그리기
                 // 위젯목록을 그린다.
                 that.view.drawList();
                 // 페이지 영역을 그린다.
-                //that.view.drawPage();
+                that.view.drawPage();
 
             }).fail(function() {
                 console.error(that.errorMsg);
