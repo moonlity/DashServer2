@@ -57,4 +57,10 @@ public class SettingSeviceImpl implements SettingSevice {
 		return map;
 	}
 
+	@Override
+	public List<DashWidgetDTO> getSettingDashAbleWidget(int dashid) throws Exception {
+		logger.info("[ SettingSevice : 이전에 등록한 위젯목록확인 ] : " + dashid );
+		return dao.getSettingDashAbleWidget(dashid);
+	}
+
 }

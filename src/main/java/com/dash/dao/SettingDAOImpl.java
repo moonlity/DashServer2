@@ -143,4 +143,9 @@ public class SettingDAOImpl implements SettingDAO {
 		return session.selectOne(namespace +".getWidgetCount" , parmaMap);
 	}
 
+	@Override
+	public List<DashWidgetDTO> getSettingDashAbleWidget(int dashid) throws Exception {
+		return session.selectList(namespace +".getSettingDashAbleWidget" , dashid);
+	}
+
 }

@@ -96,7 +96,6 @@ SETTING.model.dashBoard = (function() {
         return this.limitCout;
     }
 
-
     /**
      * @param dashName 대시보드 이름
      * 대시보드를  신규로 생성한경우
@@ -110,7 +109,6 @@ SETTING.model.dashBoard = (function() {
         this.drawBoardList.push(pushTemp);
         //3. 뷰의 대시보드 그리는 기능을 호츌한다.
         this.view.drawDashBoard();
-
     }
 
     /**
@@ -165,7 +163,6 @@ SETTING.model.dashBoard = (function() {
 
         // 뷰의 대시보드 그리는 기능을 호츌한다.
         this.view.drawDashBoard();
-
     }
 
     // 그려질 대시보드 정보를 전달한다.

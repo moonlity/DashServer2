@@ -10,7 +10,6 @@ SETTING.view.dashboard = (function() {
     var dashboard = function() {
         this.model = null;
         this.controller = null;
-        this.svcMenuEl = document.querySelectorAll(".gnbArea .selectbox .dropdown dd a"); // 좌측 대메뉴
         this.dashEl = document.querySelectorAll(".header .gnbArea .menu")[0]; // 대시보드 그려질 위치
         this.btnDashAdd = document.querySelector(".btnDashboardPlus"); // 대시보드추가 버튼
         this.addDashEl = document.querySelectorAll(".header .gnbArea .menu")[1];
@@ -21,22 +20,9 @@ SETTING.view.dashboard = (function() {
 
     dashboard.prototype.init = function() {
         var that = this;
-        // 대메뉴 선택 이벤트 ui.js 기능 일부 공유
-        for (var index = 0; index < this.svcMenuEl.length; index++) {
-            this.svcMenuEl[index].addEventListener('click', function() {
-                var code = this.dataset.code;
-                that.model.setSvcMenuid(code);
-                that.controller.getDbDashBoard();
-                that.controller.setSvcMenuId(code); // 옵져버 패턴변경시 사용됨
-                that.controller.searchAbleWidget('', 1); // 사용가능한 위젯 목록갱신
-                that.btnDashEdit.style.display = "none";
-            });
-        }
 
         // 최종저장 버튼
-        this.btnFinalSave.addEventListener('click', function() {
-            that.controller.save();
-        }, false);
+        this.btnFinalSave.addEventListener('click', function(){that.controller.save();});
 
         // 대시보드 추가 버튼
         this.btnDashAdd.addEventListener('click', function() {
@@ -64,7 +50,6 @@ SETTING.view.dashboard = (function() {
         }, false);
     }
 
-
     // 모델지정
     dashboard.prototype.setModel = function(model) {
         this.model = model;
@@ -75,15 +60,12 @@ SETTING.view.dashboard = (function() {
         this.controller = controller;
     }
 
-
     // 대시보드 메뉴 그리기
     dashboard.prototype.drawDashBoard = function() {
-
         var html = this.dashHtml(this.model.getDrawBoardList(), this.model.getSelectedId());
         this.dashEl.innerHTML = html;
         this.btnDashEdit.firstElementChild.value = "";
         this.dashBoardEventBind();
-
     }
 
     // 대시보드 이벤트등록
@@ -94,7 +76,7 @@ SETTING.view.dashboard = (function() {
             var iel = dalshel[index].querySelectorAll('a');
             iel[0].addEventListener('click', this.dashSelect.bind(this, iel[0]), true); // 대시보드선택
             iel[1].addEventListener('click', this.dashOption.bind(this, iel[1]), true); // 옵션 ... 
-            iel[2].addEventListener('click', this.dashNameEdit.bind(this, iel[2]), true); // 이름벼경
+            iel[2].addEventListener('click', this.dashNameEdit.bind(this, iel[2]), true); // 이름변경
             iel[3].addEventListener('click', this.dashDelete.bind(this, iel[3]), true); // 삭제
             iel[4].addEventListener('click', this.dashNameUpdate.bind(this, iel[4]), true); // 이름변경의 완료버튼
         }
@@ -112,14 +94,13 @@ SETTING.view.dashboard = (function() {
     // 대시보드메뉴 옆 삭제 수정 표시 ... 마크선택
     dashboard.prototype.dashOption = function(el) {
         this.dashOptionHide();
-
         var elDisplay = el.nextElementSibling.style.display;
 
         // 선택한 요소 표시
         if (elDisplay === "block") el.nextElementSibling.style.display = "none";
         else el.nextElementSibling.style.display = "block";
-
     }
+    
     dashboard.prototype.dashOptionHide = function() {
         var nodeList = document.querySelectorAll(".header .gnbArea .menu .boardMenu_setting");
         for (var index = 0; index < nodeList.length; index++) {
@@ -130,7 +111,6 @@ SETTING.view.dashboard = (function() {
     // 전체 이름 변경 수정창 닫기
     dashboard.prototype.dashNameEditClose = function() {
         var el = this.dashEl.children;
-
         for (var index = 0; index < el.length; index++) {
             var ael = el[index].querySelectorAll("a");
             ael[0].style.display = "inline-block";
@@ -141,7 +121,6 @@ SETTING.view.dashboard = (function() {
         el = this.dashEl.querySelectorAll("input");
         for (var index = 0; index < el.length; index++) {
             el[index].style.display = "none";
-
         }
     }
 
@@ -158,7 +137,6 @@ SETTING.view.dashboard = (function() {
         var inputEl = el.parentElement.parentElement.parentElement.querySelector("input");
         inputEl.style.display = "block";
     }
-
 
     // 대시보드 삭제 이벤트
     dashboard.prototype.dashDelete = function(el) {
@@ -185,14 +163,14 @@ SETTING.view.dashboard = (function() {
             function(html, item, index) {
             	html += '<li>';
             	if (item.dashId == selected) html += '<a href="#" class = "active" data-id=' + item.dashId + '>' + item.dashName + '</a>';
-            	else html += '<a href="#" data-id=' + item.dashId + '>' + item.dashName + '</a>';
+            	else html += '<a href="#" onclick= "event.stopPropagation();" data-id=' + item.dashId + '>' + item.dashName + '</a>';
             	html += '<a href="#" class="xi-ellipsis-h drop-bt"><span>설정</span></a>';
             	html += '<ul class="boardMenu_setting drop-ct">';
-            	html += '<li><a href="#" >이름변경</a></li>';
-            	html += '<li><a href="#" >삭제</a></li>';
+            	html += '<li><a href="#" onclick= "event.stopPropagation();" >이름변경</a></li>';
+            	html += '<li><a href="#" onclick= "event.stopPropagation();" >삭제</a></li>';
             	html += '</ul>';
             	html += '<input type="text" style="display:none" class = "edit" data-id=' + item.dashId + ' value= ' + item.dashName + '> ';
-            	html += '<a href="#" style="display:none" class="addSuc">완료</a>'
+            	html += '<a href="#" onclick= "event.stopPropagation();" style="display:none" class="addSuc">완료</a>'
             	html += '</li>';
                 return html;
             }, '') + ""

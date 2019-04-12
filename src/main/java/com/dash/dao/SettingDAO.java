@@ -96,4 +96,12 @@ public interface SettingDAO {
 	 * 대시보드 메뉴에서 사용가능한 위젯목록정보를 가져온다.
 	 */	
 	public int getWidgetCount(String search) throws Exception;
+	
+	/**
+	 * @param int dashid 대시보드아이디
+	 * @return List<DashWidgetDTO>  
+	 * @throws Exception 
+	 *  대시보드설정페이지에서 이미 설정완료된 위젯 정보를 가져온다.
+	 */	
+	public List<DashWidgetDTO> getSettingDashAbleWidget(int dashid) throws Exception;
 }

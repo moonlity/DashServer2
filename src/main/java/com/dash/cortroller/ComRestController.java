@@ -87,7 +87,6 @@ public class ComRestController {
 	 * @exception Exception
 	 * 
 	 * */
-
 	@RequestMapping(value = "/widgetAble")
 	public ResponseEntity<HashMap<String, Object>> ableWidgetList(
 			@RequestParam(value="search" , defaultValue="") String search, 
@@ -103,4 +102,26 @@ public class ComRestController {
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
 		}
 	}
+	
+	/**
+	 * 등록된 위젯 목록 정보를 조회한다.
+	 * @author 송원진
+	 * @param {int} dashId  대시보드 아이디
+	 * @return 사용하는 대시보드 목록 ResponseEntity List<DashMenuDTO>
+	 * @exception Exception
+	 * 
+	 * */
+	@RequestMapping(value = "/beforeWidgetList/{dashId}", method = RequestMethod.GET)
+	public ResponseEntity<List<DashWidgetDTO>> ableWidgetListAjax(
+			@PathVariable("dashId") int dashId
+			){
+		try {
+			List<DashWidgetDTO> wList = settingSevice.getSettingDashAbleWidget(dashId);
+			return new ResponseEntity<>(wList, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.toString());
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+		}
+	}	
 }

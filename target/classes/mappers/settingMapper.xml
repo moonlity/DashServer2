@@ -231,4 +231,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	AND WIDGET_NM LIKE #{pattern}
 	ORDER BY SORT_ORDER
   </select>
+  
+   <!-- 현재 이용중인 위젯정보 가져오기 -->
+  <select id="getSettingDashAbleWidget"  resultType="DashWidgetDTO" parameterType="Integer">
+	SELECT DISTINCT aa.DASHBOARD_ID as dashId ,
+	  aa.WIDGET_ID           AS widgetId,
+	  aa.WIDGET_WIDTH        AS curWidth,
+	  aa.WIDGET_HEIGHT       AS curHeight,
+	  aa.WIDGET_X				 AS curx,
+	  aa.WIDGET_Y 				 AS cury,
+	  bb.DEFAULT_WIDTH       AS defaulwdth,
+	  bb.DEFAULT_HEIGHT      AS defaultHeight,
+	  bb.MIN_WIDTH           AS minWidth,
+	  bb.MIN_HEIGHT          AS minHeight,
+	  bb.MAX_WIDTH           AS maxWidth,
+	  bb.MAX_HEIGHT          AS maxHeight,
+	  bb.WIDGET_NM           AS widgetNm,
+	  bb.WIDGET_IMG			 AS widgetImg
+	FROM TB_DASHBOARD_WIDGET aa
+	INNER JOIN TB_WIDGET bb
+	ON aa.WIDGET_ID = bb.WIDGET_ID
+	WHERE aa.DASHBOARD_ID = #{val}
+	ORDER BY aa.WIDGET_ID	
+  </select>
 </mapper>

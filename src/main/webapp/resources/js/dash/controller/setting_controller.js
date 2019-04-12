@@ -31,23 +31,16 @@ SETTING.controller.settingController = (function() {
             float: true,
             acceptWidgets: true
         });
+        // 그리드스택 크기조정이벤트
         $('.grid-stack').on('gsresizestop', function(event, el) {
             that.updateWidgetChange();
-
         });
+        
+        // 그리드스택 위치이동이벤트
         $('.grid-stack').on('dragstop', function(event, ui) {
             that.updateWidgetChange();
         });
 
-
-        // change 이벤트 타입의 items 화면상의 모든 그리드 스택과 생성 삭제 시에도 작동함 
-        // $('.grid-stack').on('change', function(event, items) {
-        //     serializeWidgetMap(items);
-        //     debugger
-        // });
-        // var serializeWidgetMap = function(items) {
-        //     console.log(items);
-        // };
     }
 
     // 위젯 수정시 데잍 수정및 수정 데이터인지 판별
@@ -71,7 +64,6 @@ SETTING.controller.settingController = (function() {
                     widgetList[index].cury = target.y;
                     widgetList[index].curWidth = target.width;
                     widgetList[index].curHeight = target.height;
-
                     this.widgetModel.setUpdateWidget(widgetList[index]);
                 }
             }
@@ -132,7 +124,6 @@ SETTING.controller.settingController = (function() {
         this.dashBoardModel.getDbDashInfo();
     }
 
-
     // 대시보드모델 삭제정보 추가
     settingController.prototype.deleteDashBoardModel = function(dashId) {
         this.dashBoardModel.deleteDashBoard(dashId);
@@ -148,7 +139,6 @@ SETTING.controller.settingController = (function() {
     settingController.prototype.drawBoardModel = function() {
         this.dashBoardView.getDrawBoardList();
     }
-
 
     // 사용가능 위젯 정보를 가져온다.
     settingController.prototype.getAbleWidgetInfo = function() {
@@ -181,17 +171,6 @@ SETTING.controller.settingController = (function() {
             widgetInfo = this.widgetView.drawWidget(widgetInfo);
             this.widgetModel.setInsertWidget(widgetInfo);
         }
-    }
-
-    // 위젯 속성 버튼을 선택한 경우
-    settingController.prototype.clickWidgetPropBtn = function(widgetId, widgetName) {
-        var dashId = document.querySelector('.header .gnbArea .menu > li > a.active').dataset.id;
-        this.widgetModel.getPropInfo(widgetId, dashId, widgetName);
-    }
-
-    // 위젯 속성 버튼을 선택한 경우
-    settingController.prototype.clickWidgetDeleteBtn = function(widgetInfo) {
-        this.widgetModel.deleteWidget(widgetInfo);
     }
 
     // 일단 안내 모달창 생성
@@ -239,8 +218,7 @@ SETTING.controller.settingController = (function() {
 
         if (!this.saveValidate(dashList)) return;
         var count = 0; // 위젯이 메인화면에 그려질대 확인하는걸로 변경한다.
-        // 대시보드 저장 호출
-        // this.dashBoardModel.save();
+
         var that = this;
         var jsonForm = {
             delDashId: [],
@@ -248,8 +226,7 @@ SETTING.controller.settingController = (function() {
             createDash: null,
             insertWidget: null,
             updateWidget: null,
-            deleteWidget: [],
-            insertProp: null
+            deleteWidget: []
         };
 
         jsonForm.delDashId = this.dashBoardModel.getDeleteBoardList();
@@ -264,7 +241,6 @@ SETTING.controller.settingController = (function() {
         count += jsonForm.updateWidget.length;
         jsonForm.deleteWidget = this.widgetModel.getDeleteWidgetList();
         count += jsonForm.deleteWidget.length;
-        jsonForm.insertProp = this.widgetModel.getInsertPropList();
         // 저장 대상이 없으면 반응하지 않는다.
         if (count == 0) {
             console.log("저장정보가 없습니다.");
@@ -272,7 +248,7 @@ SETTING.controller.settingController = (function() {
         }
         $.ajax({
                 method: "post",
-                url: "/serest/dashsave",
+                url: "/crest/dashsave",
                 accept: "application/json",
                 dataType: "text",
                 contentType: "application/json;charset=UTF-8",

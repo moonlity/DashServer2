@@ -34,7 +34,6 @@ SETTING.view.addmenu = (function() {
                 if (!searchtext) return;
                 that.controller.searchAbleWidget(searchtext, 1);
             }
-
         });
     }
 
@@ -42,7 +41,6 @@ SETTING.view.addmenu = (function() {
     addmenu.prototype.setController = function(controller) {
         this.controller = controller;
     }
-
 
     // 위젯 목록 그리기
     addmenu.prototype.drawList = function() {
@@ -59,7 +57,6 @@ SETTING.view.addmenu = (function() {
             var item = targetel[index].firstElementChild;
             item.addEventListener('click', this.addWidgetCreate.bind(this, item));
         }
-
     }
 
     // 메인 화면에 위젯 그리기
@@ -82,7 +79,6 @@ SETTING.view.addmenu = (function() {
     }
 
     // 위젯 페이지 그리기
-
     addmenu.prototype.drawPage = function() {
         var pageInfo = this.controller.getAddMenuPageInfo();
         var html = this.pageHtml(pageInfo);
@@ -121,6 +117,7 @@ SETTING.view.addmenu = (function() {
             function(html, item) {
                 html += '<li>';
                 html += '<a href="#"';
+                html += ' onclick= "event.stopPropagation();" ';
                 html += ' data-id=' + item.widgetId;
                 html += ' data-defaultwidth=' + item.defaultWidth;
                 html += ' data-defaultheight=' + item.defaultHeight;
@@ -146,13 +143,13 @@ SETTING.view.addmenu = (function() {
     addmenu.prototype.pageHtml = function(pageInfo) {
         var flag = Math.ceil(pageInfo.total / 6);
         var html = "";
-        if (flag > 1) html += '<a href="#" class="btn xi-angle-left"><span>prev</span></a>';
+        if (flag > 1) html += '<a href="#" onclick= "event.stopPropagation();" class="btn xi-angle-left"><span>prev</span></a>';
         for (let index = 1; index <= flag; index++) {
             html += '<a href="#" class="xi-angle-center';
             if (pageInfo.current == index) html += ' on ';
             html += '">' + index + '</a>'
         }
-        if (flag > 1) html += '<a href="#" class="btn xi-angle-right"><span>next</span></a>';
+        if (flag > 1) html += '<a href="#" onclick= "event.stopPropagation();" class="btn xi-angle-right"><span>next</span></a>';
         return html;
     }
 
