@@ -64,19 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE DASHBOARD_ID = #{dashId} and USER_ID = #{userId} and SVC_MENU_ID = #{svcMenuId}
 	</delete>
 	
-	
-	<!-- 위젯 속성 정보 삭제 -->
-	<delete id="deleteWidgetProp" parameterType="HashMap">
-	delete from TB_DASHBOARD_WIDGET_PROP where DASHBOARD_ID in 
-	<foreach collection="dashList" item="dashId"  open="(" separator="," close=")">
-	#{dashId}
-	</foreach>
-	</delete>
-	
-	<!-- 위젯 속성 정보 삭제 -->
-	<delete id="deleteWidgetPropVal" >
-	delete from TB_DASHBOARD_WIDGET_PROP where WIDGET_ID =  #{val}
-	</delete>
+
 	
 	<!-- 위젯 정보 삭제 -->
 	<delete id="deleteWidgetVal">
@@ -175,27 +163,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{svcMenuId},
 		    (select nvl(max(SORT_ORDER) , 0) +1 FROM TB_DASHBOARD where SVC_MENU_ID = #{svcMenuId} and USER_ID = #{userId}),
 		    (SELECT INDUSTRY_CD FROM TB_COMPANY where DOMAIN_ID = (select domain_id from tb_user where user_id = #{userId})),
-		    #{userId}
-		  )
-	</insert>
-	
-	<!-- 대시보드위젯설정정보를 새로 추가한다.  -->
-	<insert id="insertDashWidgetProp" parameterType="HashMap">
-		INSERT
-		INTO TB_DASHBOARD_WIDGET_PROP
-		  (
-		    DASHBOARD_ID,
-		    WIDGET_ID,
-		    WIDGET_OPTION_ID,
-		    WIDGET_OPTION_PROP_ID,
-		    CREATE_USER_ID
-		  )
-		  VALUES
-		  (
-		    #{dashId},
-		    #{widgetId},
-		    #{optionid},
-		    #{optionpropid},
 		    #{userId}
 		  )
 	</insert>

@@ -148,8 +148,10 @@
 							<li><a href="#" onclick="return false;">삭제</a></li>
 						</ul>
 					</li>
-					
-					<li style="display: none" id="dashEditForm">
+				</ul>
+				
+				<ul class="menu">
+					<li id="dashEditForm" style="display:none">
 						<input type="text" placeholder="대시보드추가">
 						<a href="#" class="addSuc">완료</a>
 					</li>

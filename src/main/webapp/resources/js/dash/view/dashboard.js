@@ -99,6 +99,7 @@ SETTING.view.dashboard = (function() {
         // 선택한 요소 표시
         if (elDisplay === "block") el.nextElementSibling.style.display = "none";
         else el.nextElementSibling.style.display = "block";
+
     }
     
     dashboard.prototype.dashOptionHide = function() {
@@ -111,6 +112,7 @@ SETTING.view.dashboard = (function() {
     // 전체 이름 변경 수정창 닫기
     dashboard.prototype.dashNameEditClose = function() {
         var el = this.dashEl.children;
+
         for (var index = 0; index < el.length; index++) {
             var ael = el[index].querySelectorAll("a");
             ael[0].style.display = "inline-block";
@@ -121,6 +123,7 @@ SETTING.view.dashboard = (function() {
         el = this.dashEl.querySelectorAll("input");
         for (var index = 0; index < el.length; index++) {
             el[index].style.display = "none";
+
         }
     }
 
@@ -137,6 +140,7 @@ SETTING.view.dashboard = (function() {
         var inputEl = el.parentElement.parentElement.parentElement.querySelector("input");
         inputEl.style.display = "block";
     }
+
 
     // 대시보드 삭제 이벤트
     dashboard.prototype.dashDelete = function(el) {
@@ -162,7 +166,7 @@ SETTING.view.dashboard = (function() {
         return data.reduce(
             function(html, item, index) {
             	html += '<li>';
-            	if (item.dashId == selected) html += '<a href="#" class = "active" data-id=' + item.dashId + '>' + item.dashName + '</a>';
+            	if (item.dashId == selected) html += '<a href="#" onclick= "event.stopPropagation();"  class = "active" data-id=' + item.dashId + '>' + item.dashName + '</a>';
             	else html += '<a href="#" onclick= "event.stopPropagation();" data-id=' + item.dashId + '>' + item.dashName + '</a>';
             	html += '<a href="#" class="xi-ellipsis-h drop-bt"><span>설정</span></a>';
             	html += '<ul class="boardMenu_setting drop-ct">';

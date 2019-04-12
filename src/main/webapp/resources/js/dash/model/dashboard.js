@@ -8,16 +8,23 @@ SETTING.createNameSpace("SETTING.model.dashBoard");
 
 SETTING.model.dashBoard = (function() {
     var dashBoard = function() {
-        this.api = new ApiCall(); // api 
-        this.view = null;
-        this.drawBoardList = []; // 대시보드에 그려지는 목록정보
-        this.limitCout = 0; //대시보드 생성 제한숫자
-        this.selectedId = ""; // 대시보드 선택한 메뉴
-        this.userId = ""; // 사용자 아이디
+    	 this.api = new ApiCall(); // api 
+         this.view = null;
+         this.originalBoardList = []; // 원본정보
+         this.drawBoardList = []; // 대시보드에 그려지는 목록정보
+         this.createBoardList = []; // 디비에 생성정보로 전달할 대시보드정보목록
+         this.updateBoardList = []; // 디비에 수정정보로 전달할 대시보드정보목록
+         this.deleteBoardList = []; // 디비에 삭제정보로 전달할 대시보드정보목록
+         this.limitCout = 0; //대시보드 생성 제한숫자
+         this.selectedId = ""; // 대시보드 선택한 메뉴
     }
 
     // 대시보드 정보를 재설정하고 화면도 다시 그린다.
     dashBoard.prototype.infoReset = function() {
+    	this.originalBoardList = [];
+        this.createBoardList = [];
+        this.updateBoardList = [];
+        this.deleteBoardList = [];
         this.drawBoardList = [];
         this.getDbDashInfo();
     }
