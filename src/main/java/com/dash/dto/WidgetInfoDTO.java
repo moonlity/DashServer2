@@ -1,12 +1,12 @@
 package com.dash.dto;
 
 public class WidgetInfoDTO {
+	public String userId;
 	public int widgetId;
 	public String widgetNm;
 	public String widgetImg;
 	public String dashId;
 	public String dashNm;
-	public String svcMenuId;
 	public int curHeight;
 	public int curWidth;
 	public int curx;
@@ -17,6 +17,13 @@ public class WidgetInfoDTO {
 	public int maxWidth;
 	public int minHeight;
 	public int minWidth;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getWidgetId() {
 		return widgetId;
 	}
@@ -46,12 +53,6 @@ public class WidgetInfoDTO {
 	}
 	public void setDashNm(String dashNm) {
 		this.dashNm = dashNm;
-	}
-	public String getSvcMenuId() {
-		return svcMenuId;
-	}
-	public void setSvcMenuId(String svcMenuId) {
-		this.svcMenuId = svcMenuId;
 	}
 	public int getCurHeight() {
 		return curHeight;
@@ -113,10 +114,13 @@ public class WidgetInfoDTO {
 	public void setMinWidth(int minWidth) {
 		this.minWidth = minWidth;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("WidgetInfoDTO [widgetId=");
+		builder.append("WidgetInfoDTO [userId=");
+		builder.append(userId);
+		builder.append(", widgetId=");
 		builder.append(widgetId);
 		builder.append(", widgetNm=");
 		builder.append(widgetNm);
@@ -126,8 +130,6 @@ public class WidgetInfoDTO {
 		builder.append(dashId);
 		builder.append(", dashNm=");
 		builder.append(dashNm);
-		builder.append(", svcMenuId=");
-		builder.append(svcMenuId);
 		builder.append(", curHeight=");
 		builder.append(curHeight);
 		builder.append(", curWidth=");

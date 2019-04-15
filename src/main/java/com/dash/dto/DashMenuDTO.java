@@ -1,10 +1,17 @@
 package com.dash.dto;
 
 public class DashMenuDTO {
-	private String dashId; // 대시보드 아이디
-	private String dashName; //대시보드 이름
-	private int sortOrder; // 정렬조건
+	public String userId;
+	public String dashId; // 대시보드 아이디
+	public String dashName; //대시보드 이름
+	public int sortOrder; // 정렬조건
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getDashId() {
 		return dashId;
 	}
@@ -27,7 +34,9 @@ public class DashMenuDTO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("DashMenuDTO [dashId=");
+		builder.append("DashMenuDTO [userId=");
+		builder.append(userId);
+		builder.append(", dashId=");
 		builder.append(dashId);
 		builder.append(", dashName=");
 		builder.append(dashName);
@@ -36,4 +45,5 @@ public class DashMenuDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+	
 }

@@ -59,9 +59,7 @@
 		<div class="loginBox">
 			<h1 class="logo"><img src="/resources/images/common/logo_login.png" width="100%" alt="TrendUp" /></h1>
 			<input type="text" id="userId" name="userId" value='' placeholder="아이디를 입력 해주세요" class="inputId" />
-			<input type="password" id="passWord" name="passWord"  placeholder="비밀번호를 입력 해주세요" class="inputPw" />
-			<input type="hidden" name="serviceType" value='' >
-			<input type="hidden" name="encryptPassword" value='' >
+			<input type="password" id="password" name="password"  placeholder="비밀번호를 입력 해주세요" class="inputPw" />
 			<a href="#" class="btnLogin">로그인</a>
 			<p class="loginUtilMenu"><a href="/user/findId">아이디 찾기</a> 또는 <a href="/user/modifyPW">비밀번호 변경하기</a></p>
 			<p class="txt">Making a drag-and-drop, multi-column dashboard<a href="http://www.naver.com" target="_blank">XXXXXXXX</a></p>

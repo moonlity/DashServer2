@@ -4,6 +4,7 @@ public class UserDTO {
 	public String userId;
 	public String userName;
 	public String password;
+	public String encryptPassWord;    // 암호화된 패스워드
 	public String email;
 	public String userLevelCd;
 	public String phoneNum;
@@ -24,6 +25,12 @@ public class UserDTO {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getEncryptPassWord() {
+		return encryptPassWord;
+	}
+	public void setEncryptPassWord(String encryptPassWord) {
+		this.encryptPassWord = encryptPassWord;
 	}
 	public String getEmail() {
 		return email;
@@ -52,6 +59,8 @@ public class UserDTO {
 		builder.append(userName);
 		builder.append(", password=");
 		builder.append(password);
+		builder.append(", encryptPassWord=");
+		builder.append(encryptPassWord);
 		builder.append(", email=");
 		builder.append(email);
 		builder.append(", userLevelCd=");
@@ -61,4 +70,5 @@ public class UserDTO {
 		builder.append("]");
 		return builder.toString();
 	}
+	
 }

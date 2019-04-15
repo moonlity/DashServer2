@@ -23,52 +23,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 대시보드 신규 입력한다.  -->
-	<insert id="insertDashBoard" parameterType="HashMap">
-		<selectKey keyProperty="dashboardId" keyColumn = "dashboardId" order="BEFORE" resultType="int">
-			 select max(DASHBOARD_ID ) +1 from tb_dashboard
-		</selectKey>
+	<insert id="insertDashBoard" useGeneratedKeys="true"   keyProperty="dashId" parameterType="DashInsertDTO">
 		INSERT
 		INTO TB_DASHBOARD
 		  (
-		    DASHBOARD_ID,
 		    DASHBOARD_NM,
-		    DOMAIN_ID,
 		    USER_ID,
 		    SORT_ORDER,
-		    INDUSTRY_TYPE_CD,
 		    CREATE_USER_ID
 		  )
 		  VALUES
 		  (
-		    #{dashboardId},
 		    #{dashName},
-		    (select domain_id from tb_user where user_id = #{userId}) ,
 		    #{userId},
-		    (select nvl(max(SORT_ORDER) , 0) +1 FROM TB_DASHBOARD where SVC_MENU_ID = #{svcMenuId} and USER_ID = #{userId}),
-		    (SELECT INDUSTRY_CD FROM TB_COMPANY where DOMAIN_ID = (select domain_id from tb_user where user_id = #{userId})),
+		    (select nvl(max(SORT_ORDER) , 1) +1 FROM TB_DASHBOARD ALIAS_FOR_SUBQUERY where USER_ID = #{userId}),
 		    #{userId}
 		  )
 	</insert>
 	
-	<!-- 대시보드이름을 수정한다. -->
-	<update id="updateDashBoard" parameterType="HashMap">
-	update tb_dashboard
-		set dashboard_nm = #{dashName}
-	where dashboard_id = #{dashId} and USER_ID = #{userId} and SVC_MENU_ID = #{svcMenuId}
-	</update>
-	
-		<!-- 대시보드 삭제 -->
+	<!-- 대시보드 삭제 -->
 	<delete id="deleteDashBoard" parameterType="HashMap">
 		DELETE
 		FROM TB_DASHBOARD
-		WHERE DASHBOARD_ID = #{dashId} and USER_ID = #{userId} and SVC_MENU_ID = #{svcMenuId}
+		WHERE DASHBOARD_ID = #{dashId} and USER_ID = #{userId} 
 	</delete>
-	
-
 	
 	<!-- 위젯 정보 삭제 -->
 	<delete id="deleteWidgetVal">
-	delete from TB_DASHBOARD_WIDGET where WIDGET_ID =  #{val} 
+	delete from TB_DASHBOARD_WIDGET where WIDGET_ID = #{widgetId} and dashboard_id = #{dashId}
 	</delete>
 	
 	<!-- 위젯 정보 삭제 -->
@@ -78,13 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	#{dashId}
 	</foreach>
 	</delete>
-	<!-- 대시보드 쿼리 삭제 -->
-	<delete id="deleteDashQuery" parameterType="HashMap">
-	delete from TB_DASHBOARD_QUERY where DASHBOARD_ID in 
-	<foreach collection="dashList" item="dashId"  open="(" separator="," close=")">
-	#{dashId}
-	</foreach>
-	</delete>
+
 	<!-- 대시보드  삭제 -->
 	<delete id="deleteDash" parameterType="HashMap">
 	delete from TB_DASHBOARD where DASHBOARD_ID in 
@@ -93,8 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</foreach>
 	</delete>
 	
+	<!-- 대시보드이름을 수정한다. -->
 	<update id="updateDashName" parameterType = "DashMenuDTO">
-		update TB_DASHBOARD set DASHBOARD_NM = #{dashName} where DASHBOARD_ID = #{dashId}
+		update TB_DASHBOARD 
+		set DASHBOARD_NM = #{dashName}
+		, UPDATE_USER_ID = #{userId} 
+		where DASHBOARD_ID = #{dashId}
 	</update>
 	
 	<update id="updateDashWidget"  parameterType = "WidgetInfoDTO">
@@ -104,6 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WIDGET_HEIGHT       = #{curHeight},
 		 WIDGET_X_COORDINATE = #{curx},
 		 WIDGET_Y_COORDINATE = #{cury},
+		 UPDATE_USER_ID = = #{userId},
 		 UPDATE_DATE         = sysdate
 		WHERE DASHBOARD_ID      = #{dashId}
 		AND WIDGET_ID           = #{widgetId}
@@ -131,61 +112,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{curHeight},
 		    #{curx},
 		    #{cury},
-		    (SELECT NVL(MAX(widget_order),0) FROM TB_DASHBOARD_WIDGET WHERE DASHBOARD_ID = #{dashId}),
+		    (SELECT NVL(MAX(widget_order),1) FROM TB_DASHBOARD_WIDGET WHERE DASHBOARD_ID = #{dashId}),
 		    #{userId}
 		  )
 	</insert>	
 	
-		<!-- 대시보드 신규 입력한다.  -->
-	<insert id="insertDashBoardReturn" parameterType="DashInsertDTO">
-		<selectKey keyProperty="dashId" keyColumn = "dashId" order="BEFORE" resultType="String">
-			 select SEQ_TB_DASHBOARD_ID.nextval FROM DUAL
-		</selectKey>
-		INSERT
-		INTO TB_DASHBOARD
-		  (
-		    DASHBOARD_ID,
-		    DASHBOARD_NM,
-		    DOMAIN_ID,
-		    USER_ID,
-		    SVC_MENU_ID,
-		    SORT_ORDER,
-		    INDUSTRY_TYPE_CD,
-		    CREATE_USER_ID
-
-		  )
-		  VALUES
-		  (
-		    #{dashId},
-		    #{dashName},
-		    (select domain_id from tb_user where user_id = #{userId}) ,
-		    #{userId},
-		    #{svcMenuId},
-		    (select nvl(max(SORT_ORDER) , 0) +1 FROM TB_DASHBOARD where SVC_MENU_ID = #{svcMenuId} and USER_ID = #{userId}),
-		    (SELECT INDUSTRY_CD FROM TB_COMPANY where DOMAIN_ID = (select domain_id from tb_user where user_id = #{userId})),
-		    #{userId}
-		  )
-	</insert>
-	
-	 <!-- 이용가능 위젯가져오기  -->
-  <select id="getWedgetList"  resultType="DashWidgetDTO" parameterType="HashMap">
-  	<bind name="pattern" value="'%' + search + '%'" />
-
-	SELECT 
-		WIDGET_ID AS widgetId, 
-		WIDGET_NM AS widgetNm, 
-		DEFAULT_WIDTH AS defaultWidth, 
-		DEFAULT_HEIGHT AS defaultHeight, 
-		MIN_WIDTH AS minWidth, 
-		MIN_HEIGHT AS minHeight, 
-		MAX_WIDTH AS maxWidth, 
-		MAX_HEIGHT AS maxHeight, 
-		WIDGET_IMG  AS widgetImg
-	FROM tb_widget
-	WHERE use_yn = 'Y' 
-	AND WIDGET_NM LIKE #{pattern}
-	ORDER BY SORT_ORDER
-	LIMIT #{offset},  #{size}
+	<!-- 이용가능 위젯가져오기  -->
+  	<select id="getWedgetList"  resultType="DashWidgetDTO" parameterType="HashMap">
+  		<bind name="pattern" value="'%' + search + '%'" />
+		SELECT 
+			WIDGET_ID AS widgetId, 
+			WIDGET_NM AS widgetNm, 
+			DEFAULT_WIDTH AS defaultWidth, 
+			DEFAULT_HEIGHT AS defaultHeight, 
+			MIN_WIDTH AS minWidth, 
+			MIN_HEIGHT AS minHeight, 
+			MAX_WIDTH AS maxWidth, 
+			MAX_HEIGHT AS maxHeight, 
+			WIDGET_IMG  AS widgetImg
+		FROM tb_widget
+		WHERE use_yn = 'Y' 
+		AND WIDGET_NM LIKE #{pattern}
+		ORDER BY SORT_ORDER
+		LIMIT #{offset},  #{size}
   </select>
   
   	 <!-- 이용가능 위젯가져오기 전체 갯수  -->

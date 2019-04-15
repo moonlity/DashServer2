@@ -9,15 +9,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dash.dto.DashMenuDTO;
+import com.dash.dto.DashSaveDTO;
 import com.dash.dto.DashWidgetDTO;
+import com.dash.dto.UserDTO;
 import com.dash.service.SettingSevice;
+import com.dash.util.ComSessionUtil;
 
 @RestController
 @RequestMapping("/crest")
@@ -25,6 +30,8 @@ public class ComRestController {
 	private static final Logger logger = LoggerFactory.getLogger(ComRestController.class);
 	@Inject
 	SettingSevice settingSevice;
+	@Inject
+	ComSessionUtil csUtil;
 	// 대시보드생성 제한수 가져오기
 	@RequestMapping(value = "/dashlimit/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<Integer> getDashLimit(
@@ -123,5 +130,23 @@ public class ComRestController {
 			logger.error(e.toString());
 			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
 		}
-	}	
+	}
+	
+	// 대시보드 / 위젯 정보 저장
+	@RequestMapping(value = "/dashsave", method = RequestMethod.POST)
+	public ResponseEntity<String> deleteDash(
+			@RequestBody DashSaveDTO dto 	,Model model		
+			) {
+		logger.info("[대시보드를 저장한다 :  ]" + dto.toString());
+		try {
+			UserDTO user = csUtil.getAuthenticatedUser();
+			dto.setUserId(user.getUserId());
+			settingSevice.saveDash(dto);	
+			return new ResponseEntity<>("OK",HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+		}
+	}
+	
 }

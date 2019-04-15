@@ -14,5 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE USER_ID=#{userId} 
 		and STATUS = 'T' 
 		and PASSWORD = #{password}
+		and (PASSWORD = #{password} or PASSWORD = #{encryptPassWord} )
 </select>
 </mapper>

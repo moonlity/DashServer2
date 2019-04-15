@@ -1,7 +1,7 @@
 /**
- * @Create: 2017.08.17
+ * @Create: 2019.04.17
  * @Author: 송원진
- * @Purpose: 로그인처리관련기능정의 -- 일단 디자인 없어서 임시로 한것 쿠키도 그냥 넣은것
+ * 로그인처리관련기능정의
  */
 
 $(document).ready(function(){
@@ -63,7 +63,7 @@ function signIn(){
 		alert("비밀번호를 입력해주세요");
 		$("#password").focus(); //패스워드로 포커스이동
 	} else {
-		document.loginform.action="/user/logingo";
+		document.loginform.action="/logingo";
     	document.loginform.submit();
 	}
  } //signIn()

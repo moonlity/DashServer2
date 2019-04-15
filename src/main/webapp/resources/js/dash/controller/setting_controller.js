@@ -216,7 +216,6 @@ SETTING.controller.settingController = (function() {
             }
         });
 
-        if (!this.saveValidate(dashList)) return;
         var count = 0; // 위젯이 메인화면에 그려질대 확인하는걸로 변경한다.
 
         var that = this;

@@ -48,5 +48,6 @@
     
     <context:component-scan base-package="com.dash.dao" />
     <context:component-scan base-package="com.dash.service" />
+    <context:component-scan base-package="com.dash.util" />
 	
 </beans>
