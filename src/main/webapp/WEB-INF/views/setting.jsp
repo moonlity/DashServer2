@@ -84,12 +84,12 @@
 				<h1 class="logo"><a href="#" onclick="rootManuMove();return false;">Trend Up</a></h1>
 				<ul class="util">
 					<li class="drop-ar">
-						<a href="#" class="btnUser drop-bt"><i class="xi-profile"></i>안녕하세요. <strong>${userName}(${userId})</strong> 님<i class="xi-angle-down-min"></i></a>
+						<a href="#" class="btnUser drop-bt"><i class="xi-profile"></i>안녕하세요. <strong>${loginUser.userName}(${loginUser.userId})</strong> 님<i class="xi-angle-down-min"></i></a>
 						<div class="userInfoLayer drop-ct">
 							<div class="userInfo">
 								<span class="img"><img src="/resources/images/ci/235.png" onerror="this.src='/resources/images/ci/basic.png'"/></span>
-								<strong>${userId}</strong>
-								<span>${userId}</span>
+								<strong>${loginUser.userName}</strong>
+								<span>${loginUser.userId}</span>
 							</div>
 							<ul>
 								<li><a href="#">서비스 정보</a></li>
@@ -186,7 +186,8 @@
 		</div><!-- //.content  -->
 	</div><!-- //.container -->
 </div><!-- //.wrap -->
-		 
+<!-- 기본 알럿 팝업 -->
+<div id="dsSettingType" style="display: none"></div>
 <!-- footer  -->
 <div class="footer">
 	<div class="footerIn">

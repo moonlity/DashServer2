@@ -117,7 +117,7 @@ SETTING.view.addmenu = (function() {
             function(html, item) {
                 html += '<li>';
                 html += '<a href="#"';
-                html += ' onclick= "event.stopPropagation();" ';
+                html += ' onclick="event.preventDefault();" ';
                 html += ' data-id=' + item.widgetId;
                 html += ' data-defaultwidth=' + item.defaultWidth;
                 html += ' data-defaultheight=' + item.defaultHeight;
@@ -143,13 +143,13 @@ SETTING.view.addmenu = (function() {
     addmenu.prototype.pageHtml = function(pageInfo) {
         var flag = Math.ceil(pageInfo.total / 6);
         var html = "";
-        if (flag > 1) html += '<a href="#" onclick= "event.stopPropagation();" class="btn xi-angle-left"><span>prev</span></a>';
+        if (flag > 1) html += '<a href="#" onclick= "event.preventDefault();" class="btn xi-angle-left"><span>prev</span></a>';
         for (let index = 1; index <= flag; index++) {
-            html += '<a href="#" class="xi-angle-center';
+            html += '<a href="#" onclick= "event.preventDefault();" class="xi-angle-center';
             if (pageInfo.current == index) html += ' on ';
             html += '">' + index + '</a>'
         }
-        if (flag > 1) html += '<a href="#" onclick= "event.stopPropagation();" class="btn xi-angle-right"><span>next</span></a>';
+        if (flag > 1) html += '<a href="#" onclick= "event.preventDefault();" class="btn xi-angle-right"><span>next</span></a>';
         return html;
     }
 

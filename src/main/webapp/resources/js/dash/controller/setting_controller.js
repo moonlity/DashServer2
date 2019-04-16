@@ -192,6 +192,11 @@ SETTING.controller.settingController = (function() {
     settingController.prototype.setupWidget = function(dashId) {
         this.widgetModel.getWidgetListCall(dashId);
     }
+    
+    // 위젯 속성 버튼을 선택한 경우
+    settingController.prototype.clickWidgetDeleteBtn = function(widgetInfo) {
+        this.widgetModel.deleteWidget(widgetInfo);
+    }
 
     // 저장버튼이벤트 위임 // 대시보드 & 위젯에 변동사항 있으면 바로바로 crud 되도록 변경할 예정임
     settingController.prototype.save = function() {

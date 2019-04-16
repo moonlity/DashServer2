@@ -133,7 +133,24 @@ SETTING.model.dashBoard = (function() {
                 if (isNaN(item.dashId)) item.dashId = dashName + "c"; // 아직 디비 저장전 정보 id 값 이름 + c
             }
         });
-        // 뷰의 대시보드 그리는 기능을 호츌한다.
+        
+        //2. 대시보드 수정정보를 만든다
+        if (!isNaN(dashId)) {
+            var tempArr = this.updateBoardList.filter(function(item) {
+                return item.dashId == dashId;
+            });
+            if (tempArr.length > 0) {
+                this.updateBoardList.forEach(function(item, index) {
+                    if (item.dashId == dashId) {
+                        item.dashName = dashName;
+
+                    }
+                });
+            } else {
+                this.updateBoardList.push(pushTemp);
+            }
+        }
+        // 3. 뷰의 대시보드 그리는 기능을 호츌한다.
         this.view.drawDashBoard();
     }
 

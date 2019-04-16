@@ -82,10 +82,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET 
 		 WIDGET_WIDTH        = #{curWidth},
 		 WIDGET_HEIGHT       = #{curHeight},
-		 WIDGET_X_COORDINATE = #{curx},
-		 WIDGET_Y_COORDINATE = #{cury},
-		 UPDATE_USER_ID = = #{userId},
-		 UPDATE_DATE         = sysdate
+		 WIDGET_X = #{curx},
+		 WIDGET_Y = #{cury},
+		 UPDATE_USER_ID = #{userId},
+		 UPDATE_DATE     = now()
 		WHERE DASHBOARD_ID      = #{dashId}
 		AND WIDGET_ID           = #{widgetId}
 	</update>
@@ -99,9 +99,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    WIDGET_ID,
 		    WIDGET_WIDTH,
 		    WIDGET_HEIGHT,
-		    WIDGET_X_COORDINATE,
-		    WIDGET_Y_COORDINATE,
-		    WIDGET_ORDER,
+		    WIDGET_X,
+		    WIDGET_Y,
 		    CREATE_USER_ID
 		  )
 		  VALUES
@@ -112,7 +111,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{curHeight},
 		    #{curx},
 		    #{cury},
-		    (SELECT NVL(MAX(widget_order),1) FROM TB_DASHBOARD_WIDGET WHERE DASHBOARD_ID = #{dashId}),
 		    #{userId}
 		  )
 	</insert>	
@@ -170,4 +168,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE aa.DASHBOARD_ID = #{val}
 	ORDER BY aa.WIDGET_ID	
   </select>
+  
+  <!-- 대시보드이름을 수정한다. -->
+	<update id="updateDashBoard" parameterType="HashMap">
+	update tb_dashboard
+		set dashboard_nm = #{dashName}
+	where dashboard_id = #{dashId} and USER_ID = #{userId}
+	</update>
 </mapper>
