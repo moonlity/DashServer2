@@ -59,12 +59,12 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		return "login";
 	}
 	// 로그인검사
-	@RequestMapping(value = "/logingo", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/logingo", method = RequestMethod.POST)
 	public String logingo(
 			HttpServletRequest request, 
 			HttpServletResponse response,

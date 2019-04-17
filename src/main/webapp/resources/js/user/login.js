@@ -63,7 +63,7 @@ function signIn(){
 		alert("비밀번호를 입력해주세요");
 		$("#password").focus(); //패스워드로 포커스이동
 	} else {
-		document.loginform.action="/logingo";
+		document.loginform.action="/user/logingo";
     	document.loginform.submit();
 	}
  } //signIn()

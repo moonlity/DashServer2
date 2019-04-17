@@ -11,6 +11,17 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	<!--Check Interceptor -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/crest/**"/>
+			<mapping path="/setting/**"/>
+			<exclude-mapping path="/user/**"/>
+			<exclude-mapping path="index"/>
+
+			<beans:bean class="com.dash.interceptor.LoginInterceptor" />
+		</interceptor>
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -22,7 +33,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.dash.cortroller" />
-	
-	
 	
 </beans:beans>

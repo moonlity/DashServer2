@@ -63,6 +63,9 @@ public class SettingDAOImpl implements SettingDAO {
 
 	@Override
 	public int deleteWidgetVal(int dashId, int widgetId) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("dashId", dashId);
+		paramMap.put("widgetId", widgetId);
 		return session.delete(namespace + ".deleteWidgetVal", widgetId);
 	}
 
