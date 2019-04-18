@@ -66,7 +66,7 @@ public class SettingDAOImpl implements SettingDAO {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("dashId", dashId);
 		paramMap.put("widgetId", widgetId);
-		return session.delete(namespace + ".deleteWidgetVal", widgetId);
+		return session.delete(namespace + ".deleteWidgetVal", paramMap);
 	}
 
 	@Override

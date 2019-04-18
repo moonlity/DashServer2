@@ -100,4 +100,10 @@ public class HomeController {
 	public String setting(Model model) {
 		return "setting";
 	}
+	
+	// 메인 프런트오피스영역
+	@RequestMapping(value = "/view/main", method = RequestMethod.GET)
+	public String viewMain(Model model) {
+		return "view";
+	}
 }

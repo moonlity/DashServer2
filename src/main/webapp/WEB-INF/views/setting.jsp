@@ -6,14 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	 
-<title>TrendUp4</title>
+<title>SWONJINY</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <meta http-equiv="Expires" content="0"/>
 <meta http-equiv="Pragma" content="no-cache"/>
-<meta content="트렌드업" name="description" />
-<meta content="trendup,trend,트렌드업,트렌드,트랜드,빅데이터,소셜,meaningscience,meaning,science" name="keywords" /><!-- 구글,네이버등 검색엔진에 검색되도록 조치함  -->
+<meta content="dashboard 형 화면구성" name="description" />
+<meta content="dashboard,gridstack,zingchart" name="keywords" /><!--검색엔진에 검색되도록 조치함  -->
 <link rel="shortcut icon" href="/resources/images/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/resources/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/base.css">
@@ -81,7 +81,7 @@
 	<div class="header">
 		<div class="headerIn">
 			<div class="variableArea">
-				<h1 class="logo"><a href="#" onclick="rootManuMove();return false;">Trend Up</a></h1>
+				<h1 class="logo"><a href="#" onclick="rootManuMove();return false;">SWONJINY DAHSBOARD</a></h1>
 				<ul class="util">
 					<li class="drop-ar">
 						<a href="#" class="btnUser drop-bt"><i class="xi-profile"></i>안녕하세요. <strong>${loginUser.userName}(${loginUser.userId})</strong> 님<i class="xi-angle-down-min"></i></a>
@@ -228,4 +228,3 @@
 <!-- //footer -->
 </body>
 </html>
-
