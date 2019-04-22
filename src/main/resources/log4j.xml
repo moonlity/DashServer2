@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
+	<logger name="jdbc.sqlonly"        level="info"/>
+    <logger name="jdbc.sqltiming"      level="info"/>
+    <logger name="jdbc.audit"          level="error"/>
+    <logger name="jdbc.resultset"      level="error"/>
+    <logger name="jdbc.resultsettable" level="info"/>
+    <logger name="jdbc.connection"     level="error"/>
+    
 	<!-- Appenders -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
@@ -9,6 +15,7 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+	
 	
 	<!-- Application Loggers -->
 	<logger name="com.dash.cortroller">
@@ -34,7 +41,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

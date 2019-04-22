@@ -15,6 +15,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/crest/**"/>
+			<!-- <mapping path="/widget/**"/> -->
 			<mapping path="/setting/**"/>
 			<exclude-mapping path="/user/**"/>
 			<exclude-mapping path="index"/>

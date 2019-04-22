@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.WidgetMapper">
+	<!-- 미디어별 토픽 목록  -->
+	<select id="selectMediaTopic" resultType="MediaTopic">
+		SELECT 
+		 media,
+		 category,
+		 topic,
+		 buzz
+		FROM tb_media_topic
+		WHERE DAY = #{val}
+	</select>
+	
+	<!-- 카테고리별 토픽목록 -->
+	<select id="selectCategoryTopic" resultType="KeyTopic" >
+		SELECT 
+		 category,
+		 topic,
+		 buzz
+		FROM tb_keyword_topic
+		WHERE DAY = #{val}
+	</select>
+	
+</mapper>
